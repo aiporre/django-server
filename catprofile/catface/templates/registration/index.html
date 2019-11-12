@@ -1,0 +1,52 @@
+{% extends "catface/base.html" %}
+{% block content %}
+<br><br>
+<!-- #######  THIS IS A COMMENT - Visible only in the source editor #########-->
+<div class="row white">
+    <div class="large-12 columns">
+      <h2>This is an example of facebook for cats!</h2>
+      <p><img src="https://catingtonpost.com/wp-content/uploads/2017/09/shutterstock_26466448-min.jpg" alt="cute-cat" width="465" height="311" /></p>
+    </div>
+</div>
+
+<div class="row white">
+    <div class="large-12 columns">
+      <p style="font-size: 1.5em;">You can select a cat from the list :)</p>
+      <p style="font-size: 1.5em;">Give "like" to your favorite cat</p>
+    </div>
+</div>
+
+{% if cat_list %}
+    <ul>
+    {% for cat in cat_list %}
+        <li><a href="/catface/{{ cat.id }}/">{{ cat.cat_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cats are available.</p>
+{% endif %}
+<!-- The feed of cat list-->
+<div class="row white">
+    <div class="columns large-12">
+        <ul id="cats">
+            <!-- {% for cat in all_cats %}
+                <li id='post-{{cat.pk}}'>
+                    <strong>{{ cat.cat_name }}</strong> -
+                    <span>{{ cat.pub_date }}</span> -
+                    <a id='delete-post-{{cat.description}}'>{{cat.description}}</a>
+                </li>
+            {% endfor %} -->
+        </ul>
+    </div>
+</div>
+
+
+<div class="row white">
+    <div class="large-12 columns">
+      <p>Example by Ariel Iporre</p>
+    </div>
+</div>
+<!-- Import the scripts. -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+<script src="static/scripts/main.js"></script>
+{% endblock%}
