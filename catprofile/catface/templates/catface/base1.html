@@ -16,8 +16,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active"> <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
-          <!-- <li class="nav-item dropdown">
+          {% if user.is_authenticated %}
+            <!-- <li>User: {{ user.get_username }}</li> -->
+            <li class="nav-item active"> <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+          {% else %}
+            <li class="nav-item active"> <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+          {% endif %}          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Cats&nbsp; </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a>
@@ -27,45 +31,16 @@
           </li> -->
           <!-- <li class="nav-item"> <a class="nav-link disabled" href="#">Disabled</a> </li> -->
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/search/" method="GET">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name='q'>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
     </nav>
-    <!-- <header>
-      <div class="jumbotron">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <h1 class="text-center">FACEBOOK FOR CATS</h1>
-              <p class="text-center">Social MEOWs&nbsp;&nbsp;</p>
-              <p>&nbsp;</p>
-              <p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">ABOUT&nbsp;</a> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header> -->
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mb-4 mt-2 text-center">
-            <h2>Login</h2>
-          </div>
-        </div>
-      </div>
 
-      <div class="jumbotron">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 mb-4 mt-2 text-center">
-              {% block content %}
-              {% endblock %}
-            </div>
-          </div>
-        </div>
-      </div>
+    {% block content %}
+    {% endblock %}
+
 
     <footer class="text-center">
       <div class="container">

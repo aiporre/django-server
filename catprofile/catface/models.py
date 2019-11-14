@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Cat(models.Model):
     cat_name = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('creation_date')
+    pub_date = models.DateTimeField('creation_date',default=timezone.now())
     def __str__(self):
         return self.cat_name
     def was_published_recently(self):
@@ -15,6 +15,6 @@ class Details(models.Model):
     description = models.CharField(default='', blank=True, max_length=200)
     age = models.IntegerField(default=1)
     likes = models.IntegerField(default=0)
-    picturelink = models.CharField(default='static/images/catface150X150.png',max_length=200)
+    picturelink = models.CharField(default='/static/images/catface150X150.png',max_length=200)
     def __str__(self):
         return self.description

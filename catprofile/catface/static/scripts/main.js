@@ -12,7 +12,7 @@ $(function(){
   // Load 6 cats on the page
   function load_cats() {
       $.ajax({
-          url : "api/v1/details/", // the endpoint
+          url : "api/v1/mostliked/", // the endpoint
           type : "GET", // http method
           // handle a successful response
           success : function(json) {

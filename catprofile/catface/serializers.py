@@ -4,7 +4,7 @@ from .models import Cat, Details
 
 
 # a Cat is a user that has its details..
-class CatSerializer(serializers.HyperlinkedModelSerializer):
+class CatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cat
         fields = ('id','cat_name','pub_date')
